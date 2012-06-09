@@ -15,6 +15,6 @@ It can also help:
 Licence
 -------
 
-VC API Helper is licenced under New BSD 3 clause
+MVC API Helper is licenced under New BSD 3 clause
   
  
