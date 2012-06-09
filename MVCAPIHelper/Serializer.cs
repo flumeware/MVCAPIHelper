@@ -19,11 +19,11 @@ namespace MVCAPIHelper
     {
         public static string SerializeToFormat<T>(T data, string format)
         {
-            string json=JsonSerializer.SerializeToString<T>(data);
+            string json = JsonSerializer.SerializeToString<T>(data);
             string csv = CsvSerializer.SerializeToString<T>(data);
             string jsv = TypeSerializer.SerializeToString<T>(data);
             string xml = XmlSerializer.SerializeToString<T>(data);
-            
+
             if (string.IsNullOrWhiteSpace(format) == true)
             {
                 format = "json";
@@ -42,6 +42,30 @@ namespace MVCAPIHelper
             }
 
             return "";
+        }
+
+        public static T Deserialize<T>(string serializedData, string format)
+        {
+            if (string.IsNullOrWhiteSpace(format) == true)
+            {
+                format = "json";
+            }
+
+            switch (format.Trim().ToLowerInvariant())
+            {
+                case "json":
+                    return JsonSerializer.DeserializeFromString<T>(serializedData);
+                case "csv":
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(serializedData));
+
+                    return CsvSerializer.DeserializeFromStream<T>(ms);
+                case "jsv":
+                    return TypeSerializer.DeserializeFromString<T>(serializedData);
+                case "xml":
+                    return XmlSerializer.DeserializeFromString<T>(serializedData);
+            }
+
+            throw new Exception("No format could be found for the data");
         }
     }
 }
