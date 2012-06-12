@@ -12,6 +12,10 @@ It can also help:
  - Handle Quotas
  - Authentication and Authorization
 
+Nuget Package
+------------
+MVC API Helper is avalible on Nuget at: http://nuget.org/packages/MVCAPIHelper/
+
 Licence
 -------
 
