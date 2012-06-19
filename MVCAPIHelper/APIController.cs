@@ -74,5 +74,45 @@ namespace MVCAPIHelper
 
             return new APIResponse(wrapper, Request.Params["format"]);
         }
+
+        public string AuthenticatedUser
+        {
+            get
+            {
+                bool hasUser;
+
+                bool.TryParse(HttpContext.Items["token_has_user"] as string, out hasUser);
+                string tokenUser = HttpContext.Items["api_token_user"] as string;
+
+                if (hasUser == false)
+                {
+                    return "";
+                }
+                else
+                {
+                    return tokenUser;
+                }
+            }
+        }
+
+        public string APIToken
+        {
+            get
+            {
+                return HttpContext.Items["api_token"] as string;
+            }
+        }
+
+        public bool IsAPIAuthenticated
+        {
+            get
+            {
+                bool isAuthed = false;
+
+                bool.TryParse(HttpContext.Items["is_authed"] as string, out isAuthed);
+
+                return isAuthed;
+            }
+        }
     }
 }

@@ -94,6 +94,7 @@ namespace MVCAPIHelper
 
             filterContext.HttpContext.Items["token_has_user"] = hasUser;
             filterContext.HttpContext.Items["api_token"] = apiToken;
+            filterContext.HttpContext.Items["is_authed"] = isAuthed;
         }
 
         private ActionResult ErrorResponse(CommonResponseWrapper.StatusEnum error)
