@@ -20,5 +20,7 @@ Licence
 -------
 
 MVC API Helper is licenced under New BSD 3 clause
+
+Main page: https://github.com/flumeware/MVCAPIHelper
   
  
